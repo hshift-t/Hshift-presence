@@ -24,7 +24,7 @@ export function PrivacyPage({ app, onBack }) {
         </div>
 
         <p className="privacy-note">
-          Placeholder policy — replace this content with {app.name}'s real privacy practices before publishing. Last updated: {app.privacy.updated}.
+          Thank you for choosing EasyDim. Your privacy is of the utmost importance to us. This Privacy Policy explains how we handle your data, the permissions our app requests, and why they are necessary to provide our screen-dimming features.
         </p>
 
         <div className="privacy-sections">
@@ -37,7 +37,7 @@ export function PrivacyPage({ app, onBack }) {
         </div>
 
         <div className="privacy-footer">
-          <p>Questions about this policy? Reach us at <a href="mailto:privacy@hshift.app">privacy@hshift.app</a>.</p>
+          <p>Questions about this policy? Reach us at <a href="mailto:hshift.support@gmail.com">hshift.support@gmail.com</a>.</p>
         </div>
       </div>
     </div>
