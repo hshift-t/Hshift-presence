@@ -6,8 +6,25 @@ import { GalaxyCanvas } from "./components/GalaxyCanvas";
 import { AppCard } from "./components/AppCard";
 import { PrivacyPage } from "./components/PrivacyPage";
 
+function getViewFromPath(pathname = window.location.pathname) {
+  const normalized = pathname.replace(/\/+$/, "");
+  if (!normalized || normalized === "/") return "home";
+
+  const [, route, slug] = normalized.split("/");
+  if (route === "privacy" && slug) {
+    const match = APPS.find((app) => app.id.toLowerCase() === slug.toLowerCase());
+    return match ? match.id : "home";
+  }
+
+  return "home";
+}
+
+function getPrivacyPath(appId) {
+  return `/privacy/${appId.toLowerCase()}`;
+}
+
 export default function App() {
-  const [view, setView] = useState("home");
+  const [view, setView] = useState(() => (typeof window !== "undefined" ? getViewFromPath(window.location.pathname) : "home"));
   const [wordIndex, setWordIndex] = useState(0);
   const [heroIn, setHeroIn] = useState(false);
   const [visibleCards, setVisibleCards] = useState({});
@@ -55,13 +72,29 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [view]);
 
+  useEffect(() => {
+    const handlePopState = () => {
+      setView(getViewFromPath(window.location.pathname));
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   // Use useCallback so we don't re-create these constantly
   const registerRef = useCallback((el, idx) => {
     cardRefs.current[idx] = el;
   }, []);
 
-  const openPrivacy = useCallback((id) => setView(id), []);
-  const goHome = useCallback(() => setView("home"), []);
+  const openPrivacy = useCallback((id) => {
+    setView(id);
+    window.history.pushState({}, "", getPrivacyPath(id));
+  }, []);
+
+  const goHome = useCallback(() => {
+    setView("home");
+    window.history.pushState({}, "", "/");
+  }, []);
 
   const activeApp = view !== "home" ? APPS.find((a) => a.id === view) : null;
 

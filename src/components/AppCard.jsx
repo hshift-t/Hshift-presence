@@ -70,10 +70,17 @@ export const AppCard = React.memo(function AppCard({ app, index, visible, onOpen
             Get it on Google Play
             <ArrowUpRight size={14} strokeWidth={2.25} />
           </a>
-          <button className="app-link app-link-ghost" onClick={() => onOpenPrivacy(app.id)}>
+          <a
+            className="app-link app-link-ghost"
+            href={`/privacy/${app.id.toLowerCase()}`}
+            onClick={(e) => {
+              e.preventDefault();
+              onOpenPrivacy(app.id);
+            }}
+          >
             <ShieldCheck size={14} strokeWidth={2.25} />
             Privacy policy
-          </button>
+          </a>
         </div>
       </div>
     </div>
