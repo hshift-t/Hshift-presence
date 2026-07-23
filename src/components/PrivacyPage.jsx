@@ -24,7 +24,7 @@ export function PrivacyPage({ app, onBack }) {
         </div>
 
         <p className="privacy-note">
-          Thank you for choosing EasyDim. Your privacy is of the utmost importance to us. This Privacy Policy explains how we handle your data, the permissions our app requests, and why they are necessary to provide our screen-dimming features.
+          Thank you for choosing HShift's Application. 
         </p>
 
         <div className="privacy-sections">
