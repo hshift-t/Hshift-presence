@@ -238,7 +238,7 @@ export default function App() {
             </button>
             <a
               className="btn-play-profile"
-              href="https://play.google.com/store/apps/dev?id=HShift"
+              href="https://play.google.com/store/apps/dev?id=9141698284631368361"
               target="_blank"
               rel="noopener noreferrer"
             >
